@@ -1,14 +1,33 @@
 package service;
 
 import Model.Cookies;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
+
 
 public class CookieImpl implements Cookie{
+
+    @Override
+    public Cookies getCookies(String[] args) {
+        Cookies cookies=new Cookies();
+        // parsing command-line arguments
+        for (int i = 0; i < args.length; i++) {
+            if (args[i].equals("-f")) {
+                cookies.setFileName(args[++i]);
+            } else if (args[i].equals("-d")) {
+                cookies.setDate(LocalDate.parse(args[++i]));
+            }
+        }
+        return cookies;
+    }
 
     @Override
     public Boolean checkNull(Cookies cookie) {
@@ -40,27 +59,26 @@ public class CookieImpl implements Cookie{
     }
 
     @Override
-    public String getmostActiveCookie(Map<String, Integer> cookieMap) {
-        String mostActiveCookie = null;
-        int maxCount = 0;
-        System.out.println(cookieMap);
-        for (Map.Entry<String, Integer> entry : cookieMap.entrySet()) {
-            System.out.println(entry);
-            if (entry.getValue() > maxCount) {
-                maxCount = entry.getValue();
-                mostActiveCookie = entry.getKey();
-            }
-        }
+    public List<String>  getmostActiveCookie(Map<String, Integer> cookieMap) {
+        int maxValue = Collections.max(cookieMap.values());
 
-        return mostActiveCookie;
+        List<String> maxValueKeys = cookieMap.entrySet().stream()
+                .filter(entry -> entry.getValue() == maxValue)
+                .map(Map.Entry::getKey)
+                .collect(Collectors.toList());
+
+        return maxValueKeys;
     }
 
     @Override
-    public void displayMostActiveCookie(String mostActiveCookie) {
+    public void displayMostActiveCookie(List<String> mostActiveCookie) {
         if (mostActiveCookie == null) {
             System.out.println("No cookies found for the given date.");
-        } else {
-            System.out.println(mostActiveCookie);
+        } else{
+           for (String entity:mostActiveCookie)
+           {
+               System.out.println(entity);
+           }
         }
     }
 
