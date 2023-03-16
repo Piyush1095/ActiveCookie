@@ -1,1 +1,12 @@
 # active_cookie
+
+To run this program:
+
+1. you can save it in a file named ActiveCookie.java.
+2. compile it with javac ActiveCookie.java.
+3. execute it with java ActiveCookie -f -d , where is the name of the log file to be processed and is the date in format (yyyy-MM-dd) for which the most active cookie needs to be determined.
+Ex- 'java ActiveCookie -f cookie_log.csv -d 2018-12-09'
+4.  If multiple cookies meet that criteria, please return all of them on separate lines
+    ex-'java ActiveCookie -f multi_cookie_log.csv -d 2018-12-09'
+
+
