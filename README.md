@@ -2,7 +2,7 @@
 
 To run this program:
 
-1. You can save it in a file named ActiveCookie.java.
+1. Use command cd src/main/java. Because ActiveCookie.java available at this given path.
 
 2. Compile it with javac ActiveCookie.java.
  
