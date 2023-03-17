@@ -14,4 +14,7 @@ To run this program:
     
     ex-'java ActiveCookie -f multi_cookie_log.csv -d 2018-12-09'
 
+5. To run the test case use command 'mvn clean test'.
+
+
 
