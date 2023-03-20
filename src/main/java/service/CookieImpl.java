@@ -63,7 +63,7 @@ public class CookieImpl implements Cookie{
     }
 
     @Override
-    public List<String>  getmostActiveCookie(Map<String, Integer> cookieMap) {
+    public List<String> getListOfMostActiveCookie(Map<String, Integer> cookieMap) {
         int maxValue = Collections.max(cookieMap.values());
             List<String> maxValueKeys = cookieMap.entrySet().stream()
                     .filter(entry -> entry.getValue() == maxValue)

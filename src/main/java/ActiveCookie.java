@@ -2,9 +2,11 @@ import Model.Cookies;
 import service.CookieImpl;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Logger;
 
 public class ActiveCookie {
     public static void main(String[] args) throws Exception {
+        Logger logger = Logger.getLogger(String.valueOf(CookieImpl.class));
         CookieImpl cookieImpl =new CookieImpl();
         Cookies cookies=cookieImpl.getCookies(args);
         List<String> mostActiveCookie=null;
@@ -12,9 +14,14 @@ public class ActiveCookie {
         {
             Map<String, Integer> cookieMap= cookieImpl.cookieMap(cookies);
             if(cookieMap.size()!=0) {
-              mostActiveCookie = cookieImpl.getmostActiveCookie(cookieMap);
+              mostActiveCookie = cookieImpl.getListOfMostActiveCookie(cookieMap);
             }
-            cookieImpl.displayMostActiveCookie(mostActiveCookie);
+            if (mostActiveCookie!=null) {
+                cookieImpl.displayMostActiveCookie(mostActiveCookie);
+            }else
+            {
+                logger.info("No cookies found for the given date.");
+            }
         }
     }
 }

@@ -9,6 +9,6 @@ public interface Cookie {
     Cookies getCookies(String [] arg);
     Boolean checkNull(Cookies cookie);
     Map<String, Integer> cookieMap(Cookies cookie) throws IOException;
-    List<String> getmostActiveCookie(Map<String, Integer> cookieMap);
+    List<String> getListOfMostActiveCookie(Map<String, Integer> cookieMap);
     void displayMostActiveCookie(List<String> mostActiveCookie);
 }

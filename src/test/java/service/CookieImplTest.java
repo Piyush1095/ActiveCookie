@@ -53,12 +53,12 @@ public class CookieImplTest {
     }
 
     @Test
-    public void getmostActiveCookieTest(){
+    public void getListOfmostActiveCookieTest(){
         Map<String, Integer> cookieMap = new HashMap<String, Integer>();
         cookieMap.put("AtY0laUfhglK3lC7",2);
         cookieMap.put("AtY0laUfhglK3lC8",3);
         cookieMap.put("AtY0laUfhglK3lC9",1);
-        List<String> strCookies= cookieImpl.getmostActiveCookie(cookieMap);
+        List<String> strCookies= cookieImpl.getListOfMostActiveCookie(cookieMap);
         assertEquals(strCookies.contains("AtY0laUfhglK3lC8"), true);
     }
     @Test
