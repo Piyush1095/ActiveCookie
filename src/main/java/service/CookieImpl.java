@@ -6,10 +6,8 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.time.LocalDate;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.time.ZoneOffset;
+import java.util.*;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
@@ -52,7 +50,8 @@ public class CookieImpl implements Cookie{
                     String[] fields = line.split(",");
                     String cookieStr = fields[0].trim();
                     LocalDate logDate = LocalDate.parse(fields[1].trim().substring(0, 10));
-                    if (logDate.isEqual(cookie.getDate())) {
+                    Date.from(logDate.atStartOfDay().toInstant(ZoneOffset.UTC));
+                        if (logDate.isEqual(cookie.getDate())) {
                         cookieMap.put(cookieStr, cookieMap.getOrDefault(cookieStr, 0) + 1);
                     }
                 }
