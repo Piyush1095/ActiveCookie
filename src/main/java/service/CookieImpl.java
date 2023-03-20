@@ -17,10 +17,10 @@ import java.util.stream.Collectors;
 public class CookieImpl implements Cookie{
     Logger logger = Logger.getLogger(String.valueOf(CookieImpl.class));
 
+    // parsing command-line arguments
     @Override
     public Cookies getCookies(String[] args) {
         Cookies cookies=new Cookies();
-        // parsing command-line arguments
         for (int i = 0; i < args.length; i++) {
             if (args[i].equals("-f")) {
                 cookies.setFileName(args[++i]);
@@ -33,7 +33,6 @@ public class CookieImpl implements Cookie{
 
     @Override
     public Boolean checkNull(Cookies cookie) {
-        // validating input parameters
         if (cookie.getFileName().isEmpty() || cookie.getDate() == null) {
             System.err.println("Usage: java MostActiveCookie -f <filename> -d <date>");
             return false;
@@ -41,10 +40,10 @@ public class CookieImpl implements Cookie{
         return true;
     }
 
+    // reading log file
     @Override
     public Map<String, Integer> cookieMap(Cookies cookie) throws CookieException {
         Map<String, Integer> cookieMap = new HashMap<String, Integer>();
-        // reading log file
         BufferedReader br = null;
         try {
                 br = new BufferedReader(new FileReader(cookie.getFileName()));
@@ -78,11 +77,11 @@ public class CookieImpl implements Cookie{
     @Override
     public void displayMostActiveCookie(List<String> mostActiveCookie) {
         if (mostActiveCookie.size() == 0) {
-            System.out.println("No cookies found for the given date.");
+            logger.info("No cookies found for the given date.");
         } else{
            for (String entity:mostActiveCookie)
            {
-               System.out.println(entity);
+               logger.info(entity);
            }
         }
     }

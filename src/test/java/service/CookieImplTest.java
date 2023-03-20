@@ -75,4 +75,15 @@ public class CookieImplTest {
         cookieImpl.displayMostActiveCookie(listMostActiveCookies);
     }
 
+    @Test(expected=CookieException.class)
+    public void testCookieMapException() throws CookieException {
+        Cookies cookies= new Cookies();
+        LocalDate date = LocalDate.parse("2018-12-09T06:19:00+00:00".trim().substring(0, 10));
+        cookies.setDate(date);
+        cookies.setFileName("wrongpath");
+        Map<String, Integer> map= cookieImpl.cookieMap(cookies);
+        assertEquals("AtY0laUfhglK3lC7", map);
+
+    }
+
 }
